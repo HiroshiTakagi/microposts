@@ -2,3 +2,22 @@
   <%= gravatar_for @user %>
   <%= @user.name %>
 </h1>
+
+<% if current_user == @user %>
+  <div class="col-md-6 col-md-offset-4">
+    <dl>
+      <dt>email</dt>
+      <dd><%= @user.email %></dd>
+    </dl>
+    <dl>
+      <dt>location</dt>
+      <dd><%= @user.location %></dd>
+    </dl>
+    <dl>
+      <dt>profile</dt>
+      <dd><%= @user.profile %></dd>
+    </dl>
+   
+    <%= link_to "edit profile" , edit_user_path(@user), class: "btn btn-primary" %>
+  </div>
+<% end %>
