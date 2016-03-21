@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update]
+  # before_action :set_user, only: [:edit, :update]
+  before_action :correct_user, only: [:edit, :update]
 
   def show
    @user = User.find(params[:id])
@@ -27,18 +28,13 @@ class UsersController < ApplicationController
   end
 
   def update
-    if current_user == @user
-      @user.update(user_params)
-      if @user.save
-        flash[:success] = "Your profile has been updated."
-        redirect_to @user
-      else
-        flash[:alert] = "failed to update profile."
-        render 'edit'
-      end
+    @user.update(user_params)
+    if @user.save
+      flash[:success] = "Your profile has been updated."
+      redirect_to @user
     else
-      flash[:danger] = "access denied: please login as right user"
-      redirect_to login_url
+      flash[:alert] = "failed to update profile."
+      render 'edit'
     end
   end
 
@@ -50,7 +46,18 @@ class UsersController < ApplicationController
                                  :location, :profile)
   end
 
-  def set_user
-    @user = User.find(params[:id])
+  def correct_user
+    begin
+      @user = User.find(params[:id])
+      if @user != current_user
+        flash[:danger] = "pls login and edit your own profile."
+      end
+    rescue ActiveRecord::RecordNotFound
+      flash[:danger] = "User not found."
+    end
+
+    if flash[:danger]
+      redirect_to root_url
+    end
   end
 end
