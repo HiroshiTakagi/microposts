@@ -1,0 +1,15 @@
+
+<div id="user-<%= user.id %>" class="panel panel-primary">
+  <div class="panel-heading"> <%= user.name %></div>
+  <div class="panel-body">
+    <span class="user"><%= link_to user.name, user %></span>
+    <dl>
+      <dt>location</dt>
+      <dd><%= user.location %></dd>
+    </dl>
+    <dl>
+      <dt>profile</dt>
+      <dd><%= user.profile %></dd>
+    </dl>
+  </div>
+</div>
