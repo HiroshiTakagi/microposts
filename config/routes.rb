@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get    'login' , to: 'sessions#new'
   post   'login' , to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
+  get    'static_pages/search' , to: 'static_pages#search'
 
   resources :users do
     member { get "followings", "followers" }

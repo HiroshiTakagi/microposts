@@ -1,0 +1,10 @@
+<%= form_for(@search_keywords, url: {:action => 'search'},
+                               html: {class: "form-inline text-left"}, 
+                               method: :get) do |f| %>
+  <div class="form-group">
+    <i class="fa fa-search fa-2x"></i>
+    <%= f.label :keywords, 'keywords for search:', {:class => "control-label"} %>
+    <%= f.text_field :keywords, {:class => "form-control", :size => 40} %>
+    <%= f.submit "Search", class: "btn btn-primary form-control" %>
+  </div>
+<% end %>

@@ -9,8 +9,20 @@
       </section>
     </aside>
     <div class="col-md-8">
-      <h3>Microposts feed</h3>
-      <%= render 'shared/feed' %>
+      <%= render 'search_keywords_form' %>
+      <% if @microposts_found %>
+        <% if @microposts_found.size > 0 %>
+          <h3><%= @microposts_found.size %>  microposts found</h3>
+          <ol class="microposts">
+            <%= render partial: 'microposts/micropost', collection: @microposts_found  %> 
+          </ol>
+        <% else %>
+          <h3>No  microposts found</h3>
+        <% end %>
+      <% else %>
+        <h3>Microposts feed</h3>
+        <%= render 'shared/feed' %>
+      <% end %>
     </div>
   </div>
 <% else %>
