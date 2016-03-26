@@ -1,4 +1,4 @@
-<%= form_for(@search_keywords, url: {:action => 'search'},
+<%= form_for(@search_keywords, url: {:controller => 'static_pages', :action => 'search'},
                                html: {class: "form-inline text-left"}, 
                                method: :get) do |f| %>
   <div class="form-group">
